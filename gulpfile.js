@@ -1,7 +1,7 @@
 const gulp = require("gulp");
 const babel = require("gulp-babel");
 const bs = require("browser-sync").create();
- 
+const plumber = require("gulp-plumber"); 
 
 gulp.task("browserSync", () => {
   bs.init({
@@ -13,9 +13,11 @@ gulp.task("browserSync", () => {
 
 gulp.task("babel", () => {
   return gulp.src("script.js")
+    .pipe(plumber())
     .pipe(babel({
       presets: ["es2015"]
     }))
+    .on("error", console.error.bind(console))
     .pipe(gulp.dest("dist"));
 });
 

@@ -7,6 +7,23 @@
 </head>
 <body>
 
+  <div id="app">
+    <p>
+      You are currently in {{ location.city + ", " + location.country }} 
+    </p>
+
+    <p v-if="celsiusOn">
+      It is {{ weather.temp_c }} degrees Celsius
+    </p>
+
+    <p v-else>
+      It is {{ weather.temp_f }} degrees Fahrenheit
+    </p>
+
+    <img v-bind:src="weather.icon_url" alt="">
+
+    <button v-on:click="celsiusOn = !celsiusOn">Toggle</button>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
   <script src="script.js"></script>
